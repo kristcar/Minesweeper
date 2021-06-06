@@ -1,12 +1,6 @@
 function Cell(i, j, width) {
-  if (random(1) < 0.5) {
-    //randomly set mine locations
-    this.mine = true;
-  } else {
-    this.mine = false;
-  }
-
-  this.revealed = false;
+  this.mine = false;
+  this.revealed = true;
   this.neighborCount = 0;
   this.x = i * w;
   this.y = j * w;
