@@ -23,6 +23,16 @@ function setup() {
   }
 }
 
+function mousePressed() {
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      if (grid[i][j].contains(mouseX, mouseY)) {
+        grid[i][j].reveal();
+      }
+    }
+  }
+}
+
 function draw() {
   background(255);
   for (var i = 0; i < cols; i++) {

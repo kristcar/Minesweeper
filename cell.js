@@ -19,7 +19,26 @@ Cell.prototype.show = function () {
 
   if (this.revealed) {
     if (this.mine) {
-      ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5); //show a circle representing mine in the center of the cell if mine exists in this spot
+      fill(0);
+      line(
+        this.x + this.w * 0.5,
+        this.y + this.w * 0.5 - 22,
+        this.x + this.w * 0.5,
+        this.y + this.w * 0.5
+      );
+      ellipse(this.x + this.w * 0.5, this.y + this.w * 0.5, this.w * 0.5);
+      //show mine if mine exists at spot clicked
+    } else {
+      fill(200);
+      rect(this.x, this.y, this.w, this.w); //show grey square if no mine
     }
   }
+};
+
+Cell.prototype.contains = function (x, y) {
+  return x > this.x && x < this.x + this.w && y > this.y && y < this.y + this.w;
+};
+
+Cell.prototype.reveal = function () {
+  this.revealed = true;
 };
