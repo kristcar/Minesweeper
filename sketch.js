@@ -6,14 +6,14 @@ function create2DArray(col, row) {
   return array;
 }
 
-var totalMines = 15;
+var totalMines = 25;
 var grid;
 var cols;
 var rows;
 var w = 60;
 
 function setup() {
-  createCanvas(701, 701);
+  createCanvas(1500, 701);
   rows = floor(height / w);
   cols = floor(width / w);
   grid = create2DArray(cols, rows);
@@ -61,7 +61,7 @@ function mousePressed() {
 
 function draw() {
   background(255);
-  strokeWeight(2);
+  strokeWeight(3);
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
       grid[i][j].show();

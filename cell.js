@@ -1,6 +1,6 @@
 function Cell(i, j, width) {
   this.mine = false;
-  this.revealed = true;
+  this.revealed = false;
   this.neighborCount = 0;
   this.x = i * w;
   this.y = j * w;
@@ -28,21 +28,24 @@ Cell.prototype.show = function () {
     } else {
       fill(200);
       rect(this.x, this.y, this.w, this.w); //show grey square if no mine
-      textAlign(CENTER);
-      textSize(20);
-      fill(0);
-      text(
-        this.neighborCount,
-        this.x + this.w * 0.5,
-        this.y + this.w * 0.5 + 6
-      );
+      if (this.neighborCount > 0) {
+        textAlign(CENTER);
+        textSize(20);
+        fill(0);
+        text(
+          this.neighborCount,
+          this.x + this.w * 0.5,
+          this.y + this.w * 0.5 + 6
+        );
+      }
     }
   }
 };
 
 Cell.prototype.countMines = function () {
   if (this.mine) {
-    return -1;
+    this.neighborCount = -1;
+    return;
   }
   var total = 0;
   for (var xOffset = -1; xOffset <= 1; xOffset++) {
@@ -66,4 +69,23 @@ Cell.prototype.contains = function (x, y) {
 
 Cell.prototype.reveal = function () {
   this.revealed = true;
+  console.log(this.neighborCount);
+  if (this.neighborCount == 0) {
+    this.floodFill();
+  }
+};
+
+Cell.prototype.floodFill = function () {
+  for (var xOffset = -1; xOffset <= 1; xOffset++) {
+    for (var yOffset = -1; yOffset <= 1; yOffset++) {
+      var i = xOffset + this.i;
+      var j = yOffset + this.j;
+      if (i > -1 && i < cols && j > -1 && j < rows) {
+        var neighbor = grid[i][j];
+        if (!neighbor.mine && !neighbor.revealed) {
+          neighbor.reveal();
+        }
+      }
+    }
+  }
 };
