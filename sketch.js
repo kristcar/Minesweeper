@@ -18,7 +18,12 @@ function setup() {
   grid = create2DArray(cols, rows);
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
-      grid[i][j] = new Cell(w * i, w * j, w); //make new cell for every col/row
+      grid[i][j] = new Cell(i, j, w); //make new cell for every col/row
+    }
+  }
+  for (var i = 0; i < cols; i++) {
+    for (var j = 0; j < rows; j++) {
+      grid[i][j].countMines();
     }
   }
 }
@@ -35,6 +40,7 @@ function mousePressed() {
 
 function draw() {
   background(255);
+  strokeWeight(2);
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
       grid[i][j].show();
