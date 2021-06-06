@@ -9,10 +9,10 @@ function create2DArray(col, row) {
 var grid;
 var cols;
 var rows;
-var w = 20;
+var w = 60;
 
 function setup() {
-  createCanvas(400, 400);
+  createCanvas(701, 701);
   rows = floor(height / w);
   cols = floor(width / w);
   grid = create2DArray(cols, rows);
@@ -24,7 +24,7 @@ function setup() {
 }
 
 function draw() {
-  background(0);
+  background(255);
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
       grid[i][j].show();
