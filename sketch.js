@@ -6,16 +6,19 @@ function create2DArray(col, row) {
   return array;
 }
 
-var cols = 20;
-var rows = 20;
 var grid;
+var cols;
+var rows;
+var w = 20;
 
 function setup() {
-  createCanvas(200, 200);
-  grid = create2DArray(20, 20);
+  createCanvas(400, 400);
+  rows = floor(height / w);
+  cols = floor(width / w);
+  grid = create2DArray(cols, rows);
   for (var i = 0; i < cols; i++) {
     for (var j = 0; j < rows; j++) {
-      grid[i][j] = new Cell(); //make new cell for every col/row
+      grid[i][j] = new Cell(w * i, w * j, w); //make new cell for every col/row
     }
   }
 }
